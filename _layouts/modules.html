@@ -1,0 +1,14 @@
+---
+layout: default
+title: "Course Modules"
+permalink: /modules/
+---
+
+<h1>Course Modules</h1>
+<ul>
+    {% for module in site.modules | group_by: "module" %}
+        <li>
+            <a href="{{ module.name | downcase | replace: ' ', '-' | prepend: '/modules/' }}">{{ module.name }}</a>
+        </li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,33 @@
+<!-- _layouts/module.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+    {% include header.html %}
+    
+    <main>
+        <h1>{{ page.title }}</h1>
+        <div>
+            {{ content }}
+        </div>
+        
+        <h2>Lessons</h2>
+        <ul>
+            {% assign lessons = site.modules | where: "module", page.title | sort: "order" %}
+            {% for lesson in lessons %}
+                <li>
+                    <a href="{{ lesson.url | relative_url }}">{{ lesson.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+    
+    <footer>
+        <p>&copy; {{ site.time | date: '%Y' }} Phuong Vo. All rights reserved.</p>
+    </footer>
+</body>
